@@ -1,36 +1,69 @@
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Jean-Michel Busca
  */
 public class EmployeeInfo {
 
-  private final int id;
-  private final String name;
-  private final float salary;
+  private final int eid;
+  private final String ename;
+  private final String job;
+  private final int mgr;
+  private final Date hired;
+  private final float sal;
+  private final float comm;
+  private final int did; 
 
-  public EmployeeInfo(int id, String name, float salary) {
-    this.id = id;
-    this.name = name;
-    this.salary = salary;
+  public EmployeeInfo(int eid, String ename, String job, int mgr, Date hired,float sal, float comm, int did) {
+    this.eid = eid;
+    this.ename = ename;
+    this.job = job;
+    this.mgr = mgr;
+    this.hired = hired;
+    this.sal = sal;
+    this.comm = comm;
+    this.did = did;
   }
 
   @Override
   public String toString() {
-    return "EmployeeInfo{" + "id=" + id + ", name=" + name + ", salary=" + salary + "}\n";
+    return "EmployeeInfo{" + "id=" + eid + ", name=" + ename + ", salary=" + sal + "}\n";
   }
 
-  public int getId() {
-    return id;
+
+  public int getEid() {
+    return eid;
   }
 
-  public String getName() {
-    return name;
+  public String getEname() {
+    return ename;
   }
 
-  public float getSalary() {
-    return salary;
+  public String getJob() {
+    return job;
+  }
+
+  public int getMgr() {
+    return mgr;
+  }
+
+  public Date getHired() {
+    return hired;
+  }
+
+  public float getSal() {
+    return sal;
+  }
+
+  public float getComm() {
+    return comm;
+  }
+
+  public int getDid() {
+    return did;
   }
 
 }
