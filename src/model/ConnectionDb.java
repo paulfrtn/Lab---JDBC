@@ -1,3 +1,12 @@
+/*
+ * Membres du projet :
+ *
+ * - FORTUNA Paul-Alexandre
+ * - DING Armand
+ * - FEKLER David
+ * - CHANZY Alexandre
+ * */
+
 package model;
 
 import java.sql.Connection;

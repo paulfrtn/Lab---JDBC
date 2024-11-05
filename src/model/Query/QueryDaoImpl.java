@@ -1,4 +1,15 @@
-package model;
+/*
+ * Membres du projet :
+ *
+ * - FORTUNA Paul-Alexandre
+ * - DING Armand
+ * - FEKLER David
+ * - CHANZY Alexandre
+ * */
+
+package model.Query;
+
+import model.ConnectionDb;
 
 import java.sql.*;
 import java.util.ArrayList;

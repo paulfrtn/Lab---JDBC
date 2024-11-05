@@ -1,4 +1,13 @@
-package model;
+/*
+ * Membres du projet :
+ *
+ * - FORTUNA Paul-Alexandre
+ * - DING Armand
+ * - FEKLER David
+ * - CHANZY Alexandre
+ * */
+
+package model.Employee;
 
 import java.util.List;
 
