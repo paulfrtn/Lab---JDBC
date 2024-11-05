@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 public class ConnectionDb {
 
+    //On ajoute SSL pour la sécurité
     private static final String url = "jdbc:mysql://database-ece.cfii8uky06cj.eu-north-1.rds.amazonaws.com:3306/company" +
             "?useSSL=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris";
     private static final String user = "admin";

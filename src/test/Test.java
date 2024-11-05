@@ -50,13 +50,13 @@ public class Test {
 
         System.out.println("------------------Liste des employés avec requête préparée ---------------------");
         List<Employee> employeesPS = employeeDao.getEmployeesPS();
-        for (Employee employeePS : employees) {
-            System.out.println(employeePS);
+        for (Employee employee : employeesPS) {
+            System.out.println(employee);
         }
         System.out.println("----------------------------------------------------------------------------------");
 
         //Augmentation du salaire des employés ayant le job 'CLERK' en utilisant une requête préparée
-        //employeeDao.raiseSalaryPS("CLERK", 100);
+        employeeDao.raiseSalaryPS("CLERK", 100);
 
         //On test une injection SQL une nouvelle fois
         /*
@@ -77,15 +77,15 @@ public class Test {
         List<Department> departments2 = departementDao.getDepartments(null, null, "NEW-YORK");
         System.out.println("----------------------------------------------------------------------------------");
 
-        System.out.println("------------------Liste des départements sans requête préparée (avec null et location 'NEW-YORK') ---------------------");
-        for (Department department : departments) {
+        System.out.println("------------------Liste des départements sans requête préparée (avec null et location 'NEW-YORK') -----");
+        for (Department department : departments2) {
             System.out.println(department);
         }
         System.out.println("----------------------------------------------------------------------------------");
 
         List<Department> departments3 = departementDao.getDepartments(null, "RESEARCH", "DALLAS");
         System.out.println("------------------Liste des départements sans requête préparée (avec null en ID, name 'RESEARCH' et location 'DALLAS') ---------------------");
-        for (Department department : departments) {
+        for (Department department : departments3) {
             System.out.println(department);
         }
         System.out.println("----------------------------------------------------------------------------------");
@@ -108,6 +108,5 @@ public class Test {
             System.out.println(result2);
         }
         System.out.println("----------------------------------------------------------------------------------");
-
     }
 }

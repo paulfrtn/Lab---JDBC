@@ -12,6 +12,7 @@ package model.Query;
 import java.util.List;
 
 public interface QueryDao {
+    //Interface pour les méthodes d'exécution de requêtes et de statements
     public List<String> executeQuery(String query);
     public List<String> executeStatement(String statement);
 }
