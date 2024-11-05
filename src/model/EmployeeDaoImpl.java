@@ -6,7 +6,6 @@ import java.util.List;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
-    // Méthode utilisant Statement
     public List<Employee> getEmployees() {
         List<Employee> employees = new ArrayList<>();
         String query = "SELECT * FROM EMP";
@@ -31,11 +30,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return employees;
     }
 
-    // Méthode utilisant PreparedStatement
     public List<Employee> getEmployeesPS() {
         List<Employee> employees = new ArrayList<>();
         String query = "SELECT * FROM EMP";
@@ -65,35 +62,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     public boolean raiseSalary(String job, float amount) {
-        Connection connection = null;
-        Statement statement = null;
+        String query = "UPDATE EMP SET sal = sal + " + amount + " WHERE job = '" + job + "'";
         boolean success = false;
 
-        try {
-            connection = ConnectionDb.getConnection();
-            statement = connection.createStatement();
+        try (Connection connection = ConnectionDb.getConnection();
+             Statement statement = connection.createStatement()) {
 
-            // Créer la requête SQL
-            String query = "UPDATE EMP SET sal = sal + " + amount + " WHERE job = '" + job + "'";
             System.out.println("Executing query: " + query);
 
-            // Exécuter la requête
             int rowsUpdated = statement.executeUpdate(query);
             success = rowsUpdated > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return success;
     }
+
     public boolean raiseSalaryPS(String job, float amount) {
         String query = "UPDATE EMP SET sal = sal + ? WHERE job = ?";
         boolean success = false;
@@ -101,11 +86,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
         try (Connection connection = ConnectionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            // Définir les paramètres du PreparedStatement
             preparedStatement.setFloat(1, amount);
             preparedStatement.setString(2, job);
 
-            // Exécuter la requête
+            // Affichage de la requête avec les paramètres substitués
+            System.out.println("Executing query: UPDATE EMP SET sal = sal + " + amount + " WHERE job = '" + job + "'");
+
             int rowsUpdated = preparedStatement.executeUpdate();
             success = rowsUpdated > 0;
 
@@ -115,4 +101,3 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return success;
     }
 }
-

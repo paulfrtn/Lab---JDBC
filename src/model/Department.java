@@ -11,6 +11,11 @@ public class Department {
         this.dloc = dloc;
     }
 
+    @Override
+    public String toString() {
+        return "Department [ID=" + did + ", Name=" + dname + ", Location=" + dloc + "]";
+    }
+
     public int getDid() {
         return did;
     }
