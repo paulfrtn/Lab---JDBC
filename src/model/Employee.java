@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author Jean-Michel Busca
  */
-public class EmployeeInfo {
+public class Employee {
 
   private final int eid;
   private final String ename;
@@ -17,7 +17,7 @@ public class EmployeeInfo {
   private final float comm;
   private final int did; 
 
-  public EmployeeInfo(int eid, String ename, String job, int mgr, Date hired,float sal, float comm, int did) {
+  public Employee(int eid, String ename, String job, int mgr, Date hired, float sal, float comm, int did) {
     this.eid = eid;
     this.ename = ename;
     this.job = job;

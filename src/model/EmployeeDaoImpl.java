@@ -1,58 +1,32 @@
 package model;
 
-import model.ConnectionDb;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
-
-    public EmployeeInfo getEmployeeById(int id) {
+    public List<Employee> getAllEmployees() {
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Statement statement = null;
         ResultSet resultSet = null;
-        EmployeeInfo employeeInfo = null;
+        List<Employee> employees = new ArrayList<>();
         try {
             connection = ConnectionDb.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?");
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                employeeInfo = new EmployeeInfo(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getFloat("salary"), resultSet.getInt("department_id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return employeeInfo;
-    }
-
-    public List<EmployeeInfo> getAllEmployees() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        List<EmployeeInfo> employees = new ArrayList<EmployeeInfo>();
-        try {
-            connection = ConnectionDb.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT * FROM employee");
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.createStatement();
+            String query = "SELECT * FROM employee";
+            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                employees.add(new EmployeeInfo(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getFloat("salary"), resultSet.getInt("department_id")));
+                employees.add(new Employee(
+                        resultSet.getInt("eid"),
+                        resultSet.getString("ename"),
+                        resultSet.getString("job"),
+                        resultSet.getInt("mgr"),
+                        resultSet.getDate("hired"),
+                        resultSet.getFloat("sal"),
+                        resultSet.getFloat("comm"),
+                        resultSet.getInt("did")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,8 +35,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
+                if (statement != null) {
+                    statement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
