@@ -1,6 +1,10 @@
 package test;
 
 import model.ConnectionDb;
+import model.*;
+
+import java.util.List;
+
 
 /**
  *
@@ -9,16 +13,15 @@ import model.ConnectionDb;
 public class Test {
   public static void main(String[] args) throws Exception {
 
-    // Test ConnectionDb
-    ConnectionDb connectionDb = new ConnectionDb();
-    System.out.println("ConnectionDb: OK");
+    EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+    List<Employee> employees = employeeDao.getEmployees();
 
-    // Test ConnectionDb.getConnection()
-    connectionDb.getConnection();
-    System.out.println("ConnectionDb.getConnection(): OK");
+    System.out.println("Liste des employés :");
+    for (Employee employee : employees) {
+      System.out.println(employee);
+    }
 
-    // Test ConnectionDb.close()
-    connectionDb.close();
+    employeeDao.raiseSalaryPS("' OR '1'='1", 1000);
 
   }
 }
